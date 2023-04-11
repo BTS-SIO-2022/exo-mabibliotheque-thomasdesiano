@@ -1,6 +1,28 @@
 <?php
+class DB {
 
-// TODO #1 créer un objet PDO permettant de se connecter à la base de données "book"
-// et le stocker dans la variable $pdo
+    private $pdo;
 
+    public function __construct()
+    {    
+    $dbname = "book";
+    $dsn = "mysql:host=localhost;dbname=".$dbname;
+    $username = "root";
+    $password = "bonjour";
+
+        try 
+        {
+            $pdoConnexion = new PDO($dsn, $username, $password);
+        } catch (PDOException $exception){
+            echo 'Connexion échouée :'.$exception->getMessage();
+        }
+
+        $this->pdo = $pdoConnexion;
+    }
+
+    public function getPDO(){
+        return $this->pdo;
+    }
+}
+?>
 

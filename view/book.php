@@ -22,7 +22,12 @@
                 <a href="index.php?order=name" class="btn btn-primary">Trier par nom</a>&nbsp;
                 <a href="index.php?order=author" class="btn btn-info">Trier par auteur</a>&nbsp;
                 <!-- TODO #2 n'afficher ce bouton que s'il y a un tri -->
-                <a href="index.php" class="btn btn-dark">Annuler le tri</a><br>              
+                <?php
+                if ($order != null){
+                    echo'<a href="index.php" class="btn btn-dark">Annuler le tri</a><br>';
+                }
+                      
+                ?>        
                 <br>
                 <table class="table table-striped">
                 <thead>
@@ -35,22 +40,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- TODO #1 boucler sur le tableau $bookList contenant tous les livres
-                    (supprimez ces 2 lignes d'exemple) -->
-                    <tr>
-                        <td>-</td>
-                        <td>Exemple</td>
-                        <td>à faire</td>
-                        <td>depuis</td>
-                        <td>la DB</td>
-                    </tr>
-                    <tr>
-                        <td>-</td>
-                        <td>Les fleurs du mal</td>
-                        <td>Baudelaire Charles</td>
-                        <td>12-02-1857</td>
-                        <td>Poésie</td>
-                    </tr>
+                    <?php
+                    foreach($bookList as $book) {
+                        echo"<tr>";
+                        echo"<td>-</td>";
+                        echo"<td>".$book['name']."</td>";
+                        echo"<td>".$book['author']."</td>";
+                        echo"<td>".$book['release_date']."</td>";
+                        //echo"<td>$genre</td>";
+                        echo"</tr>";
+                    }
+                    ?>
+                    
                 </tbody>
                 </table>
             </div>
